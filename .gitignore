@@ -35,3 +35,11 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# logs
+
+raid/*
+
+# build files
+
+client/dist/*
