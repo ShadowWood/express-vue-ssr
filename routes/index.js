@@ -21,7 +21,7 @@ const layout = fs.readFileSync(path.join(__dirname, '../client/index.html'), 'ut
 const router = express.Router();
 
 router.all('/', function(req, res, next) {
-  const clientApp = require(path.join(__dirname, '../client/dist/main.js'))();
+  const clientApp = require(path.join(__dirname, '../client/dist/build.js'))();
   renderer.renderToString(clientApp, (err, html) => {
     if (err) {
       logger.error(err);
