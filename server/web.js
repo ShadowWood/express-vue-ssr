@@ -14,8 +14,10 @@ const expressSession = require('express-session');
 const connectRedis = require('connect-redis');
 const express = require('express');
 const compression = require('compression');
+const favicon = require('serve-favicon');
 const http = require('http');
 const config = require('config');
+const path = require('path');
 
 const router = require('../routes');
 const logger = require('../utils/logger');
@@ -23,6 +25,8 @@ const logger = require('../utils/logger');
 const SessStore = connectRedis(expressSession);
 
 const app = express();
+
+const resolve = file => path.resolve(__dirname, file);
 
 app.use(compression());
 app.use(responseTime());
@@ -40,7 +44,11 @@ app.use(expressSession({
   cookie: {maxAge: 1000 * 60 * 60 * 24 * 7}
 }));
 
-// app.use(express.static(config.static.dir, {maxAge: config.static.maxAge}))
+app.use(favicon('./client/public/logo-48.png'));
+// static file path
+config.static.forEach((item) => {
+  app.use(item.url, express.static(item.dir, {maxAge: item.maxAge || 0}))
+});
 
 app.use(router);
 

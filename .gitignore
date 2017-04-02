@@ -43,3 +43,6 @@ raid/*
 # build files
 
 client/dist/*
+
+
+.vscode

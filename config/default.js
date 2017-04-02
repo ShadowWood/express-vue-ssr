@@ -34,5 +34,27 @@ module.exports = {
     port: 6379,
     db: 1,
     pass: ''
-  }
+  },
+  static: [
+    {
+      url: '/dist',
+      dir: path.join(__dirname, '../client/dist'),
+      maxAge: 1000 * 60
+    },
+    {
+      url: '/public',
+      dir: path.join(__dirname, '../client/public'),
+      maxAge: 1000 * 60
+    },
+    {
+      url: '/manifest.json',
+      dir: path.join(__dirname, '../client/manifest.json'),
+      maxAge: 1000 * 60
+    },
+    {
+      url: '/service-worker.js',
+      dir: path.join(__dirname, '../client/service-worker.js'),
+      maxAge: 1000 * 60
+    }
+  ]
 }
